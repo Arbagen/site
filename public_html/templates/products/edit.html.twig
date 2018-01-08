@@ -1,0 +1,12 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block body %}
+    <h3>Images</h3>
+    <div>
+        {% for image in images %}
+            <img width="100px" src="{{ asset(image.getPath) }}">
+        {% endfor %}
+    </div>
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+    <a href="{{ path('products.all') }}" class="btn btn-warning">Cancel</a>
+{% endblock %}

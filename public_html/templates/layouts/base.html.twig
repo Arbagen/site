@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+    <title>{{project_name}} |{% block title %}{% endblock %}</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+        <link href="{{ asset('build/css/app.css') }}" rel="stylesheet" />
+    {% endblock %}
+</head>
+<body>
+{% block navigation %}
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+    </div>
+{% endblock %}
+<div class="container theme-showcase" role="main">
+    <div class="col-md-8">
+        {% block body %}
+        {% endblock %}
+    </div>
+    <div class="col-md-4">
+        {% block sidebar %}
+        {% endblock %}
+    </div>
+    <div class="container-fluid">
+        {% block footer %}
+        {% endblock %}
+    </div>
+</div>
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ 'build/js/app.js' }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block body %}
+   <table class="table table-hover">
+       <tr>
+           <th>ID</th>
+           <th>Name</th>
+           <th>Description</th>
+           <th>Price</th>
+           <th>Images</th>
+        </tr>
+       <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.getId }}</td>
+                <td>{{ product.getName }}</td>
+                <td>{{ product.getDescription }}</td>
+                <td>{{ product.getPrice }}</td>
+                <td>
+                    {% for image in product.getImages %}
+                        <img width="100px" src="{{ asset(image.getPath) }}">
+                    {% endfor %}
+                </td>
+                <td>
+                    <form action="{{ path('products.remove') }}" method="post">
+                        <button type="submit" name="id" value="{{ product.getId }}" class="btn btn-danger">Remove</button>
+                        <a href="{{ path('products.edit', {id: product.getId}) }}" class="btn btn-warning">Edit</a>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+       </tbody>
+   </table>
+    <a href="{{ path('products.new') }}" class="btn btn-primary">Add new</a>
+{% endblock %}
