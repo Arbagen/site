@@ -23,11 +23,10 @@ class ProductsController extends Controller
     /**
      * @Route("/products", name="products.all")
      */
-    public function indexAction()
+    public function index()
     {
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository(Product::class)->findAll();
-        // replace this line with your own code!
         return $this->render('products/index.html.twig', [
             'products' => $products,
         ]);
@@ -38,7 +37,7 @@ class ProductsController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return Response
      */
-    public function newAction(Request $request)
+    public function new(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $product = new Product();
@@ -47,7 +46,7 @@ class ProductsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($product);
             $projectDir = $this->getParameter('project_dir');
-            $productImagesDir = $this->getParameter('product_images_dir');
+            $productImagesDir = $this->getParameter('uploads_dir') . 'images/products/';
             $fileUploader = new FileUploader($projectDir . $productImagesDir);
             foreach ($product->getImagesToUpload() as $image) {
                 $pathOnServer = $fileUploader->upload($image);
@@ -94,14 +93,14 @@ class ProductsController extends Controller
      * @ParamConverter("product", class="App\Entity\Product")
      *
      */
-    public function editAction(Request $request, Product $product)
+    public function edit(Request $request, Product $product)
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $projectDir = $this->getParameter('project_dir');
-            $productImagesDir = $this->getParameter('product_images_dir');
+            $productImagesDir = $this->getParameter('uploads_dir') . 'images/products/';
             $fileUploader = new FileUploader($projectDir . $productImagesDir);
             foreach ($product->getImagesToUpload() as $image) {
                 $pathOnServer = $fileUploader->upload($image);

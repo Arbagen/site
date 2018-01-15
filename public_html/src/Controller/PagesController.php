@@ -37,7 +37,7 @@ class PagesController extends Controller
         ]);
     }
     /**
-     * @Route("/contacts", name="contacts")
+     * @Route("/contact", name="contact")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactsAction()

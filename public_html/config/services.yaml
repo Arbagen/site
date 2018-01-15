@@ -1,9 +1,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-  project_dir: '%kernel.project_dir%/public/'
-  product_images_dir: 'images/products/'
-  contact_logos_dir: 'images/contact_logos/'
+  project_dir: '%kernel.project_dir%/'
+  uploads_dir: 'uploads/'
 
 services:
     # default configuration for services in *this* file
@@ -27,9 +26,9 @@ services:
         tags: ['controller.service_arguments']
     App\Service\FileUploader:
         arguments:
-            $targetDir: '%kernel.project_dir%/public/'
+            $targetDir: '%kernel.project_dir%/uploads/'
     App\Service\FileRemover:
         arguments:
-            $publicDir: '%kernel.project_dir%/public/'
+            $baseDir: '%kernel.project_dir%/'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

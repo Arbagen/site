@@ -51,7 +51,7 @@ class ContactTypesController extends Controller
             $logo = $contactType->getUploadedFile();
             if ($logo) {
                 $projectDir = $this->getParameter('project_dir');
-                $contactLogosDir = $this->getParameter('contact_logos_dir');
+                $contactLogosDir = $this->getParameter('uploads_dir') . 'images/contact_logos/';
                 $fileUploader = new FileUploader($projectDir . $contactLogosDir);
                 $pathOnServer = $fileUploader->upload($logo);
                 if (file_exists($pathOnServer)) {
@@ -90,14 +90,16 @@ class ContactTypesController extends Controller
             $logo = $contactType->getUploadedFile();
             if ($logo) {
                 $projectDir = $this->getParameter('project_dir');
-                $contactLogosDir = $this->getParameter('contact_logos_dir');
+                $contactLogosDir = $this->getParameter('uploads_dir') . 'images/contact_logos/';
                 $fileUploader = new FileUploader($projectDir . $contactLogosDir);
                 $pathOnServer = $fileUploader->upload($logo);
                 if (file_exists($pathOnServer)) {
                     $relativePath = str_replace($projectDir, '', $pathOnServer);
                     $newImage = new Image($relativePath);
                     $em->persist($newImage);
-                    $fileRemover->removeFile($contactType->getLogo()->getPath());
+                    if ($contactType->getLogo()) {
+                        $fileRemover->removeFile($contactType->getLogo()->getPath());
+                    }
                     $contactType->setLogo($newImage);
                 }
             }
@@ -118,14 +120,15 @@ class ContactTypesController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction(Request $request, FileRemover $fileRemover)
+    public function remove(Request $request, FileRemover $fileRemover)
     {
         $contactTypeId = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $contactType = $em->getRepository(ContactType::class)->find($contactTypeId);
         if ($contactType) {
-            $projectDir = $this->getParameter('project_dir');
-            $fileRemover->removeFile($contactType->getLogo()->getPath());
+            if ($contactType->getLogo()) {
+                $fileRemover->removeFile($contactType->getLogo()->getPath());
+            }
             $em->remove($contactType);
             $em->flush();
         }

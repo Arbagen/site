@@ -3,7 +3,7 @@
     <h3>Images</h3>
     <div>
         {% if images is empty %}
-            <img width="100px" src="{{ asset('/images/products/default_product.jpg') }}">
+            <img width="100px" src="{{ asset(uploads_image_dir ~'/products/default_product.jpg') }}">
         {% endif %}
         {% for image in images %}
             <img width="100px" src="{{ asset(image.getPath) }}">

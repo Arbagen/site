@@ -14,16 +14,16 @@ class FileRemover
     /**
      * @var string
      */
-    protected $publicDir;
+    protected $baseDir;
     
     /**
      * FileRemover constructor.
      *
-     * @param string $publicDir
+     * @param string $baseDir
      */
-    public function __construct(string $publicDir)
+    public function __construct(string $baseDir)
     {
-        $this->publicDir = $publicDir;
+        $this->baseDir = $baseDir;
     }
     
     /**
@@ -31,8 +31,8 @@ class FileRemover
      */
     public function removeFile(string $pathToFile)
     {
-        if (file_exists($this->publicDir . $pathToFile)) {
-            unlink($this->publicDir . $pathToFile);
+        if (file_exists($this->baseDir . $pathToFile)) {
+            unlink($this->baseDir . $pathToFile);
         }
     }
 }
