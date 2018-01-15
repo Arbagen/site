@@ -13,7 +13,7 @@ class Image
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @var integer
+     * @var int
      */
     private $id;
     
@@ -44,7 +44,7 @@ class Image
     /**
      * @return integer
      */
-    public function getId(): integer
+    public function getId(): int
     {
         return $this->id;
     }
@@ -52,7 +52,7 @@ class Image
     /**
      * @param integer $id
      */
-    public function setId(integer $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }

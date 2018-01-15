@@ -1,0 +1,9 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+    <a href="{{ path('contact.types.all') }}" class="btn btn-warning">Cancel</a>
+{% endblock %}

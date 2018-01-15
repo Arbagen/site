@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Logo</th>
+        </tr>
+        <tbody>
+        {% for contactType in contactTypes %}
+            <tr>
+                <td>{{ contactType.getId }}</td>
+                <td>{{ contactType.getName }}</td>
+                <td>
+                    {% if contactType.getLogo %}
+                        <img width="50px" height="50px" src="{{ asset(contactType.getLogo.getPath) }}">
+                    {% else %}
+                        <img width="50px" height="50px" src="{{ asset('/images/contact_logos/default_contact_type.png') }}">
+                    {% endif %}
+                </td>
+                <td>
+                    <form action="{{ path('contact.types.remove') }}" method="post">
+                        <button type="submit" name="id" value="{{ contactType.getId }}" class="btn btn-danger">Remove</button>
+                        <a href="{{ path('contact.types.edit', {id: contactType.getId}) }}" class="btn btn-warning">Edit</a>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('contact.types.new') }}" class="btn btn-primary">Add new</a>
+{% endblock %}

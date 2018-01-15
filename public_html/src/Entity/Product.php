@@ -41,9 +41,9 @@ class Product
     protected $description;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Image", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="Image", orphanRemoval=true, cascade={"persist", "remove"})
      * @ORM\JoinTable(name="product_images", joinColumns={@ORM\JoinColumn(name="product", referencedColumnName="id", onDelete="CASCADE")})
-     * @var ArrayCollection | Image[];
+     * @var Collection | Image[];
      */
     protected $images;
     
@@ -82,7 +82,7 @@ class Product
     }
     
     /**
-     * @return ArrayCollection
+     * @return Collection|Image[]
      */
     public function getImages(): Collection
     {
@@ -152,6 +152,5 @@ class Product
     {
         $this->description = $description;
     }
-    
     
 }

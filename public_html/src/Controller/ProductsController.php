@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Service\FileRemover;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Service\FileUploader;
 
+/**
+ * Class ProductsController
+ *
+ * @package App\Controller
+ */
 class ProductsController extends Controller
 {
     /**
@@ -48,7 +54,6 @@ class ProductsController extends Controller
                 if (file_exists($pathOnServer)) {
                     $relativePath = str_replace($projectDir, '', $pathOnServer);
                     $newImage = new Image($relativePath);
-                    $em->persist($newImage);
                     $product->addImage($newImage);
                 }
             }
@@ -63,10 +68,10 @@ class ProductsController extends Controller
     /**
      * @Route("/products/remove", name="products.remove")
      * @param \Symfony\Component\HttpFoundation\Request $request
-     *
+     * @param \App\Service\FileRemover                  $fileRemover
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction(Request $request)
+    public function remove(Request $request, FileRemover $fileRemover)
     {
         $productId = $request->get('id');
         $em = $this->getDoctrine()->getManager();
@@ -74,7 +79,7 @@ class ProductsController extends Controller
         if ($product) {
             $em->remove($product);
             foreach ($product->getImages() as $image) {
-                $product->removeImage($image);
+                $fileRemover->removeFile($image->getPath());
             }
             $em->flush();
         }
@@ -82,9 +87,12 @@ class ProductsController extends Controller
     }
     
     /**
-     * @param \App\Entity\Product $product
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \App\Entity\Product                       $product
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/products/edit/{id}", name="products.edit")
      * @ParamConverter("product", class="App\Entity\Product")
+     *
      */
     public function editAction(Request $request, Product $product)
     {
@@ -100,7 +108,6 @@ class ProductsController extends Controller
                 if (file_exists($pathOnServer)) {
                     $relativePath = str_replace($projectDir, '', $pathOnServer);
                     $newImage = new Image($relativePath);
-                    $em->persist($newImage);
                     $product->addImage($newImage);
                 }
             }

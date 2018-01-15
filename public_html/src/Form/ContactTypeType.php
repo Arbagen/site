@@ -1,21 +1,21 @@
 <?php
+
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Entity\ContactType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
- * Class ProductType
+ * Class ContactTypeType
  *
  * @package App\Form
  */
-class ProductType extends AbstractType
+class ContactTypeType extends AbstractType
 {
     
     /**
@@ -25,22 +25,19 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('name', TextType::class)
-          ->add('description', TextType::class)
-          ->add('price', MoneyType::class)
-          ->add('imagesToUpload', FileType::class, [
-            'label' => 'Images', 'multiple' => true, 'required' => false
-          ])
-          ->add('submit', SubmitType::class);
+            ->add('name', TextType::class)
+            ->add('uploadedFile', FileType::class, ['label' => 'Logo', 'required' => false])
+            ->add('submit', SubmitType::class)
+        ;
     }
     
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-          'data_class' => Product::class,
+            'data_class' => ContactType::class,
         ]);
     }
 }

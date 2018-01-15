@@ -1,7 +1,17 @@
-{% extends 'layouts/base.html.twig' %}
+{% extends '@site/layouts/base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
 {% block sidebar %}
-    <h2>Sidebar content</h2>
+    <h2>
+        {#dev navigation#}
+        <ul>
+            <li>
+                <a href="{{ path('products.all') }}">Products</a>
+            </li>
+            <li>
+                <a href="{{ path('contact.types.all') }}">ContactTypes</a>
+            </li>
+        </ul>
+    </h2>
 {% endblock %}

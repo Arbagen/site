@@ -3,6 +3,7 @@
 parameters:
   project_dir: '%kernel.project_dir%/public/'
   product_images_dir: 'images/products/'
+  contact_logos_dir: 'images/contact_logos/'
 
 services:
     # default configuration for services in *this* file
@@ -26,7 +27,9 @@ services:
         tags: ['controller.service_arguments']
     App\Service\FileUploader:
         arguments:
-            $targetDir: '%kernel.project_dir%/var/uploads/'
-
+            $targetDir: '%kernel.project_dir%/public/'
+    App\Service\FileRemover:
+        arguments:
+            $publicDir: '%kernel.project_dir%/public/'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

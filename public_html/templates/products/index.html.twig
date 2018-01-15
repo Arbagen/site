@@ -16,6 +16,9 @@
                 <td>{{ product.getDescription }}</td>
                 <td>{{ product.getPrice }}</td>
                 <td>
+                    {% if product.getImages is empty %}
+                        <img width="100px" src="{{ asset('/images/products/default_product.jpg') }}">
+                    {% endif %}
                     {% for image in product.getImages %}
                         <img width="100px" src="{{ asset(image.getPath) }}">
                     {% endfor %}
