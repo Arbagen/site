@@ -3,14 +3,18 @@ version: '3'
 services:
   php:
     container_name: php_site
-    build: ./php
+    build:
+      context: ./php
+      args:
+        - INSTALL_XDEBUG=true
     depends_on:
       - mysql
     links:
       - mysql:mysql
     volumes:
       - "./public_html:/var/www/html:cached"
-      - "./php/config/php.ini:/usr/local/etc/php/php.ini"
+    environment:
+      PHP_IDE_CONFIG: serverName=site
 
   mysql:
     container_name: mysql_site
