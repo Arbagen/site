@@ -25,10 +25,12 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        $title = 'All products';
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository(Product::class)->findAll();
         return $this->render('products/index.html.twig', [
             'products' => $products,
+            'title' => $title
         ]);
     }
     
@@ -39,6 +41,7 @@ class ProductsController extends Controller
      */
     public function new(Request $request)
     {
+        $title = 'New product';
         $em = $this->getDoctrine()->getManager();
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -61,6 +64,7 @@ class ProductsController extends Controller
         }
         return $this->render('products/new.html.twig', [
           'form' => $form->createView(),
+          'title' => $title
         ]);
     }
     
@@ -95,6 +99,7 @@ class ProductsController extends Controller
      */
     public function edit(Request $request, Product $product)
     {
+        $title = 'Edit product';
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -115,7 +120,8 @@ class ProductsController extends Controller
         $images = $product->getImages();
         return $this->render('products/edit.html.twig', [
           'form' => $form->createView(),
-          'images' => $images
+          'images' => $images,
+          'title' => $title
         ]);
     }
 }

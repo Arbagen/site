@@ -3,18 +3,5 @@
     {{ parent() }}
 {% endblock %}
 {% block sidebar %}
-    <h2>
-        {#dev navigation#}
-        <ul>
-            <li>
-                <a href="{{ path('products.all') }}">Products</a>
-            </li>
-            <li>
-                <a href="{{ path('contact.types.all') }}">ContactTypes</a>
-            </li>
-            <li>
-                <a href="{{ path('contacts.all') }}">Contacts</a>
-            </li>
-        </ul>
-    </h2>
+    {% include '@site/layouts/sidebar.html.twig'  %}
 {% endblock %}

@@ -30,6 +30,8 @@ class ContactType extends AbstractType
               'choice_label' => 'getName',
             ])
             ->add('value', TextType::class)
+            ->add('owner', TextType::class)
+            ->add('position', TextType::class)
             ->add('submit', SubmitType::class)
         ;
     }

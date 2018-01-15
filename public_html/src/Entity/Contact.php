@@ -18,7 +18,7 @@ class Contact
 
     /**
      * @ORM\ManyToOne(targetEntity="ContactType")
-     * @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $type;
     
@@ -27,6 +27,19 @@ class Contact
      * @ORM\Column(type="string")
      */
     protected $value;
+    
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    protected $owner;
+    
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $position;
     
     /**
      * @return mixed
@@ -74,6 +87,38 @@ class Contact
     public function setValue(string $value): void
     {
         $this->value = $value;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+    
+    /**
+     * @param string $owner
+     */
+    public function setOwner(string $owner): void
+    {
+        $this->owner = $owner;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getPosition(): string
+    {
+        return $this->position;
+    }
+    
+    /**
+     * @param string $position
+     */
+    public function setPosition(string $position): void
+    {
+        $this->position = $position;
     }
     
 }

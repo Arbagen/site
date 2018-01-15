@@ -8,6 +8,8 @@
             <th>ID</th>
             <th>Value</th>
             <th>Type</th>
+            <th>Owner</th>
+            <th>Position</th>
         </tr>
         <tbody>
         {% for contact in contacts %}
@@ -22,6 +24,8 @@
                         <img width="25px" height="25px" src="{{ asset(uploads_image_dir ~ '/contact_logos/default_contact_type.png') }}">
                     {% endif %}
                 </td>
+                <td>{{ contact.getOwner }}</td>
+                <td>{{ contact.getPosition }}</td>
                 <td>
                     <form action="{{ path('contacts.remove') }}" method="post">
                         <button type="submit" name="id" value="{{ contact.getId }}" class="btn btn-danger">Remove</button>
