@@ -21,7 +21,7 @@ use App\Service\FileUploader;
 class ProductsController extends Controller
 {
     /**
-     * @Route("/products", name="products.all")
+     * @Route("/admin/products", name="products.all")
      */
     public function index()
     {
@@ -35,7 +35,7 @@ class ProductsController extends Controller
     }
     
     /**
-     * @Route("/products/new", name="products.new")
+     * @Route("/admin/products/new", name="products.new")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return Response
      */
@@ -69,7 +69,7 @@ class ProductsController extends Controller
     }
     
     /**
-     * @Route("/products/remove", name="products.remove")
+     * @Route("/admin/products/remove", name="products.remove")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \App\Service\FileRemover                  $fileRemover
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -93,7 +93,7 @@ class ProductsController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \App\Entity\Product                       $product
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/products/edit/{id}", name="products.edit")
+     * @Route("/admin/products/edit/{id}", name="products.edit")
      * @ParamConverter("product", class="App\Entity\Product")
      *
      */

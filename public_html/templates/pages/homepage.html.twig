@@ -1,8 +1,137 @@
-{% extends '@site/layouts/layout.html.twig' %}
-
-{% block title %}
-    {{ title }}
+{% extends '@site/layouts/front_base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block navigation %}
+    {% include '@site/layouts/front_jambotron.html.twig'  %}
 {% endblock %}
 {% block body %}
-    <h1>This is {{ title }}</h1>
+    <div lang="en">
+        <div>
+            <div class="container">
+                <div class="marketing">
+                    <h1> Introducing Agency!</h1>
+                    <p class="marketing-byline"> Need reasons to purchase this template? See below.</p>
+                    <hr class="soften">
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <img src="assets/img/responsive.png" alt="Responsive">
+                            <h2> <span class="firstword">Responsive</span> Layout</h2>
+                            <p class="features"> We combine creative forces with systematic activists. All ideas require implementation
+                                and our multi-disciplined network fosters a wide array of abilities that empower
+                                visionaries and entrepreneurs to lead meaningful brands.</p>
+                        </div>
+                        <div class="span4"> <img src="assets/img/think-creative.png" alt="Think Creative">
+                            <h2> <span class="firstword">Built With</span> Bootstrap 2</h2>
+                            <p> Inspired Thinking. Ask smarter questions, push for innovative solutions and believe
+                                in the power of creativity. Be consistently open and honest. Be true to ourselves
+                                and our values. Find, stimulate and maintain the best minds.</p>
+                        </div>
+                        <div class="span4"> <img src="assets/img/core-values.png" alt="Core Values">
+                            <h2> <span class="firstword">Valid</span> HTML5 CSS3</h2>
+                            <p> Inspired Thinking. Ask smarter questions, push for innovative solutions and believe
+                                in the power of creativity. Be consistently open and honest. Be true to ourselves
+                                and our values. Find, stimulate and maintain the best minds.</p>
+                        </div>
+                    </div>
+                    <hr class="soften">
+                    <div class="row-fluid textleft">
+                        <div class="span8">
+                            <h2> <span class="firstword">Our</span> Services</h2>
+                            <p> We've been doing this for a long time and the knowledge we gather from our years
+                                of experience helps us to understand how the mobile channel can help our clients
+                                in their challenges. We help brands by creating and developing compelling and strategic
+                                solutions that are not depended on channels or platforms, but instead creating a
+                                link between human needs and brands.</p>
+                            <p> A few other benefits to this template include a price table element and the ability
+                                to modify button backgrounds using CSS3. </p>
+                            <div class="row-fluid bordertop">
+                                <p> With this templates, comes the following awesomenesses :)</p>
+                                <div class="span4">
+                                    <ul class="services">
+                                        <li><i class="icon-user"></i> Built for and by nerds</li>
+                                        <li><i class="icon-th"></i> 12-column grid</li>
+                                        <li><i class="icon-globe"></i> Bad-ass support</li>
+                                        <li><i class="icon-book"></i> Growing library</li>
+                                    </ul>
+                                </div>
+                                <div class="span4">
+                                    <ul class="services">
+                                        <li><i class="icon-resize-small"></i> Responsive design</li>
+                                        <li><i class="icon-eye-open"></i> Cross-everything</li>
+                                        <li><i class="icon-list-alt"></i> Documentation</li>
+                                        <li><i class="icon-cog"></i> jQuery plugins</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <h2> <span class="firstword">Agency</span> Perks</h2>
+                            <div class="benefit first clearfix"> <span class="icon flexible-hours"></span><span class="benefit_text">
+                      <div class="perks-title"> Flexible Hours</div>
+                      <p> Come late at work or take free time if you want, we focus on results.</p>
+                      </span> </div>
+                            <div class="benefit clearfix"> <span class="icon coffee-day"></span><span class="benefit_text">
+                      <div class="perks-title"> Surprise Treats</div>
+                      <p> Every week we have one day that is dedicated to surprise treat.</p>
+                      </span> </div>
+                            <div class="benefit clearfix"> <span class="icon personal-projects"></span><span class="benefit_text">
+                      <div class="perks-title"> Personal Projects</div>
+                      <p> We support you... to build your very own projects.</p>
+                      </span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include '@site/layouts/front_main_footer.html.twig'  %}
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+		$(document).ready(function () {
+
+			var showCaseItems = $('.show-case-item').hide();
+
+			var splashes = $('.splash').hide();
+
+			splashes.eq(0).show();
+			showCaseItems.eq(0).show();
+
+			var prevIndex = -1;
+			var nextIndex = 0;
+			var currentIndex = 0;
+
+			$('#banner-pagination li a').click(function () {
+
+				nextIndex = parseInt($(this).attr('rel'));
+
+				if (nextIndex != currentIndex) {
+					$('#banner-pagination li a').html('<img src="assets/img/slidedot.png" alt="slide"/>');
+					$(this).html('<img src="assets/img/slidedot-active.png" alt="slide"/>');
+					currentIndex = nextIndex;
+					if (prevIndex < 0) prevIndex = 0;
+
+					splashes.eq(prevIndex).css({ opacity: 1 }).animate({ opacity: 0 }, 500, function () {
+						$(this).hide();
+					});
+					splashes.eq(nextIndex).show().css({ opacity: 0 }).animate({ opacity: 1 }, 500, function () { });
+
+					showCaseItems.eq(prevIndex).css({ opacity: 1 }).animate({ opacity: 0 }, 500, function () {
+						$(this).hide();
+						showCaseItems.eq(nextIndex).show().css({ opacity: 0 }).animate({ opacity: 1 }, 200, function () { });
+					});
+
+					prevIndex = nextIndex;
+				}
+
+				return false;
+			});
+
+		});
+    </script>
 {% endblock %}

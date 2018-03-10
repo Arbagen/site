@@ -50,4 +50,17 @@ class PagesController extends Controller
           'map_src' => $map,
         ]);
     }
+
+    /**
+     * @Route("/products", name="front.products")
+     * @return Response
+     */
+    public function productACtion()
+    {
+        $title = 'Products';
+        return $this->render('@site/pages/work-three-columns.html.twig',[
+            'title' => $title,
+        ]);
+
+    }
 }
