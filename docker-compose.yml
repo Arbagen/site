@@ -22,9 +22,10 @@ services:
     volumes:
       - "./mysql/.data:/var/lib/mysql"
       - "./mysql/config/my.cnf:/usr/local/etc/mysql/my.cnf"
+    env_file: "./.env"
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: symfony
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
   nginx:
     container_name: nginx_site
