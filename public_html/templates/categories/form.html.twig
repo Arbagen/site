@@ -1,0 +1,20 @@
+<form name="category" method="post">
+    <div class="form-group row">
+        <label class="col-form-label col-sm-2 form-control-label required" for="category_name">Name</label>
+        <div class="col-sm-10">
+            <input id="category_name" name="category[name]" required="required" class="form-control" value="{{ category.name }}" type="text">
+        </div>
+    </div>
+    <div id="category-product-params">
+        {% for productParam in category.productParams %}
+            {% include('@site/productParams/form.html.twig') with {'value': productParam.name, 'id': productParam.getId} %}
+        {% endfor %}
+    </div>
+    <div class="form-group row">
+        <button id="add-product-param-item" class="btn btn-primary pull-right">Add param</button>
+    </div>
+    <div class="form-group row">
+        <button type="submit" id="category_submit" name="category[submit]" class="btn-secondary btn">Submit</button>
+        <a href="{{ path('categories.all') }}" class="btn btn-warning">Cancel</a>
+    </div>
+</form>

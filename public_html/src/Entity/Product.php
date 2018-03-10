@@ -5,8 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Image;
-use App\Entity\Category;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -46,6 +44,19 @@ class Product
      * @var Collection | Image[];
      */
     protected $images;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category", referencedColumnName="id", onDelete="SET NULL")
+     *
+     * @var Category
+     */
+    protected $category;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="ProductParamValue", mappedBy="product", orphanRemoval=true, fetch="EAGER")
+     */
+    protected $paramValues;
     
     /**
      * @var UploadedFile[]
@@ -151,6 +162,38 @@ class Product
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+    
+    /**
+     * @return \App\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    /**
+     * @param \App\Entity\Category $category
+     */
+    public function setCategory(\App\Entity\Category $category): void
+    {
+        $this->category = $category;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getParamValues()
+    {
+        return $this->paramValues;
+    }
+    
+    /**
+     * @param mixed $paramValues
+     */
+    public function setParamValues($paramValues): void
+    {
+        $this->paramValues = $paramValues;
     }
     
 }

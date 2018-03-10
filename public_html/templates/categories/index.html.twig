@@ -1,0 +1,33 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block body %}
+   <table class="table table-hover">
+       <tr>
+           <th>ID</th>
+           <th>Name</th>
+           <th>Params</th>
+        </tr>
+       <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.getId }}</td>
+                <td>{{ category.getName }}</td>
+                <td>
+                    {% for param in category.productParams %}
+                        {{ param.name }}
+                    {% endfor %}
+                </td>
+                <td>
+                    <form action="{{ path('products.remove') }}" method="post">
+                        <button type="submit" name="id" value="{{ category.getId }}" class="btn btn-danger">Remove</button>
+                        <a href="{{ path('categories.edit', {id: category.getId}) }}" class="btn btn-warning">Edit</a>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+       </tbody>
+   </table>
+    <a href="{{ path('categories.new') }}" class="btn btn-primary">Add new</a>
+{% endblock %}

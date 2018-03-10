@@ -1,0 +1,32 @@
+{% extends 'layouts/layout.html.twig' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block body %}
+    {% include('categories/form.html.twig') %}
+    <div id="hidden-params" style="display: none">
+        {% include('@site/productParams/form.html.twig') %}
+    </div>
+{% endblock %}
+    {% block javascript %}
+        {{ parent() }}
+        <script>
+            $(document).ready(function() {
+                let $wrapper = $(document).select('.product-param-item');
+                $wrapper.on('click', '.remove-product-param-item', function(e) {
+                    e.preventDefault();
+                    $(this).closest('.product-param-item')
+                        .fadeOut('slow', function () {
+                            $(this).remove()
+                        });
+                });
+            });
+            let addParamButton = $('#add-product-param-item');
+            let params = $('#category-product-params');
+            addParamButton.click(function (e) {
+                e.preventDefault();
+                let paramForm = $('#hidden-params').clone().removeAttr('id');
+                params.append(paramForm.fadeIn('slow'));
+            });
+        </script>
+    {% endblock %}

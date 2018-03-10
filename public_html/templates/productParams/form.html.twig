@@ -1,0 +1,22 @@
+<div class="product-param-item">
+    <div class="form-group row">
+        <label class="col-form-label col-sm-2 form-control-label required">Param name</label>
+        <div class="col-sm-10">
+            <div class="col-sm-11">
+                <input name="category[productParams][{% if id is defined %}{{ id }}{% endif %}][name]" required="required" class="form-control"
+                        {% if value is defined %}
+                            value="{{ value }}"
+                        {% endif %}
+                       type="text">
+                {% if id is defined %}
+                    <input type="hidden" name="category[productParams][{{ id }}][id]">
+                {% endif %}
+            </div>
+            <div class="col-sm-1">
+                <a href="#" class="remove-product-param-item close">
+                    <span>&times</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

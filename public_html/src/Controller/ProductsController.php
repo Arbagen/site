@@ -28,7 +28,7 @@ class ProductsController extends Controller
         $title = 'All products';
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository(Product::class)->findAll();
-        return $this->render('products/index.html.twig', [
+        return $this->render('@site/products/index.html.twig', [
             'products' => $products,
             'title' => $title
         ]);
@@ -62,7 +62,7 @@ class ProductsController extends Controller
             $em->flush();
             return $this->redirectToRoute('products.all');
         }
-        return $this->render('products/new.html.twig', [
+        return $this->render('@site/products/new.html.twig', [
           'form' => $form->createView(),
           'title' => $title
         ]);
@@ -118,7 +118,7 @@ class ProductsController extends Controller
             $em->flush();
         }
         $images = $product->getImages();
-        return $this->render('products/edit.html.twig', [
+        return $this->render('@site/products/edit.html.twig', [
           'form' => $form->createView(),
           'images' => $images,
           'title' => $title
