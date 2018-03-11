@@ -5,16 +5,12 @@ services:
     container_name: php_site
     build:
       context: ./php
-      args:
-        - INSTALL_XDEBUG=true
     depends_on:
       - mysql
     links:
       - mysql:mysql
     volumes:
       - "./public_html:/var/www/html:cached"
-    environment:
-      PHP_IDE_CONFIG: serverName=site
 
   mysql:
     container_name: mysql_site
@@ -30,8 +26,6 @@ services:
   nginx:
     container_name: nginx_site
     image: nginx:latest
-    ports:
-      - 8080:80
     volumes:
       - "./public_html/:/var/www/html"
       - "./nginx/config/nginx.conf:/etc/nginx/conf.d/default.conf"
@@ -46,8 +40,6 @@ services:
     image: phpmyadmin/phpmyadmin
     depends_on:
      - mysql
-    ports:
-        - 8081:80
     links:
         - mysql
     environment:
