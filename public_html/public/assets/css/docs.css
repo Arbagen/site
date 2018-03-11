@@ -359,7 +359,7 @@ hr.soften2 {
 /* Perks section on Home */
 
 .benefit {
-	background: url('../images/team_benefits_delimiter.png') no-repeat left bottom;
+	/*background: url('../images/team_benefits_delimiter.png') no-repeat left bottom;*/
 	display: block;
 	padding: 1em 0;
 }
@@ -1239,7 +1239,7 @@ form.bs-docs-example {
 }
 .blog article .read-more-link {
 	padding-right: 22px;
-	background: url(../images/icon_right-arrow.png) no-repeat right center;
+	background: /*url(../images/icon_right-arrow.png)*/ no-repeat right center;
 }
 .blog article aside .blog-post-type h3 {
 	width: 91px;
@@ -1249,16 +1249,16 @@ form.bs-docs-example {
 	margin: 1.3em auto 0;
 }
 .blog article aside .blog-post-type h3.article {
-	background: url(../images/icon_blog-article.png) no-repeat;
+	background: /*url(../images/icon_blog-article.png)*/ no-repeat;
 }
 .blog article aside .blog-post-type h3.link {
-	background: url(../images/icon_blog-link.png) no-repeat;
+	background: /*url(../images/icon_blog-link.png)*/ no-repeat;
 }
 .blog article aside .blog-post-type h3.video {
-	background: url(../images/icon_blog-video.png) no-repeat;
+	background: /*url(../images/icon_blog-video.png)*/ no-repeat;
 }
 .blog article aside .blog-post-type h3.image {
-	background: url(../images/icon_blog-image.png) no-repeat;
+	background: /*url(../images/icon_blog-image.png)*/ no-repeat;
 }
 .blog article:hover aside .blog-post-type h3 {
 	background-position: 0 -94px;
@@ -1643,22 +1643,22 @@ label {
 	margin-right: .3em;
 }
 .work .devices .phone {
-	background: url(../img/icon_phone.png) no-repeat;
+	background: /*url(../img/icon_phone.png)*/ no-repeat;
 	width: 28px;
 	height: 62px;
 }
 .work .devices .tablet {
-	background: url(../img/icon_tablet.png) no-repeat;
+	background: /*url(../img/icon_tablet.png)*/ no-repeat;
 	width: 72px;
 	height: 62px;
 }
 .work .devices .desktop {
-	background: url(../img/icon_desktop.png) no-repeat;
+	background: /*url(../img/icon_desktop.png)*/ no-repeat;
 	width: 105px;
 	height: 62px;
 }
 .work .devices .print {
-	background: url(../images/icon_print.png) no-repeat;
+	background: /*url(../images/icon_print.png)*/ no-repeat;
 	width: 46px;
 	height: 62px;
 }
@@ -2124,13 +2124,13 @@ div#output{display:none;}
 }
 #demo-side-bar
 {
-    border: 1px solid black;
-    background: #DDD;
-    color: #333;
+    border: 1px solid black;
+    background: #DDD;
+    color: #333;
     padding: 0 8px;
     display:block!important;
     top:50px!important;
-    position: absolute;
+    position: absolute;
     right: 0.7%;
 }
 #bsa-close
@@ -2148,5 +2148,5 @@ div#output{display:none;}
 {
     display:none!important;
     }
- #ads-sidebar{margin-top:100px!important;}
-
+    
+

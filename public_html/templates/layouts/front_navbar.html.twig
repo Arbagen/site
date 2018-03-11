@@ -1,55 +1,19 @@
-<!-- Navbar
-    ================================================== -->
 <div class="nav-agency">
     <div class="navbar navbar-static-top">
-        <!-- navbar-fixed-top -->
         <div class="navbar-inner">
             <div class="container">
                 <a class="brand" href="{{ path('homepage') }}">
-                    <img src="assets/img/{% if logo is defined %}{{ logo }}{% else %}Logodark.png{% endif %}" alt="Logo">
+                    <img src="assets/img/{% if logo is defined %}{{ logo }}{% else %}Logodark.png{% endif %}" alt="">
                 </a>
                 <div id="main-nav">
                     <div class="nav-collapse collapse">
-                        <ul class="nav sf-js-enabled sf-shadow">
-                            <li><a href="{{ path('homepage') }}">Home</a> </li>
-                            <li><a href="{{ path('front.products') }}">Work</a> </li>
-                            <li class="dropdown"><a class="dropdown-toggle sf-with-ul" data-toggle="dropdown" href="javascript:"> Pricing <b class="caret"></b><span class="sf-sub-indicator"></span></a>
-                                <ul class="dropdown-menu" style="display: none; visibility: hidden;">
-                                    <li><a href="#">Four Column</a></li>
-                                    <li><a href="#">Three Column</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="javascript:" class="dropdown-toggle sf-with-ul" data-toggle="dropdown"> Pages <b class="caret"></b><span class="sf-sub-indicator"></span></a>
-                                <ul class="dropdown-menu" style="display: none; visibility: hidden;">
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Components</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a class="dropdown-toggle sf-with-ul" data-toggle="dropdown" href="javascript:"> Blog <b class="caret"></b><span class="sf-sub-indicator"></span></a>
-                                <ul class="dropdown-menu" style="display: none; visibility: hidden;">
-                                    <li><a href="#">Blog Page</a></li>
-                                    <li><a href="#">Single Page</a></li>
-                                </ul>
-                            </li>
+                        <ul class="nav">
+                            <li class="active"><a href="{{ path('homepage') }}">Home</a> </li>
+                            <li><a href="{{ path('front.products') }}">Products</a> </li>
+                            <li><a href="{{ path('front.contact') }}">Contact Us</a> </li>
+                            <li><a href="{{ path('front.faq') }}">FAQ</a> </li>
                         </ul>
                     </div>
-                    <select>
-                        <option selected="selected" value="">Please choose page</option>
-                        <option value="{{ path('homepage') }}">Home</option>
-                        <option value="{{ path('front.products') }}"> Work </option>
-                        <option value="work-details.html">Work Details</option>
-                        <option value="javascript:"> Pricing </option>
-                        <option value="pricing.html">Four Column</option>
-                        <option value="pricing-three-columns.html">Three Column</option>
-                        <option value="javascript:"> Pages </option>
-                        <option value="faq.html">FAQ</option>
-                        <option value="contact.html">Contact Us</option>
-                        <option value="components.html">Components</option>
-                        <option value="javascript:"> Blog </option>
-                        <option value="blog.html">Blog Page</option>
-                        <option value="blog-single.html">Single Page</option>
-                    </select>
                 </div>
             </div>
         </div>
