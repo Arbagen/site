@@ -2,18 +2,22 @@
     <div class="navbar navbar-static-top">
         <div class="navbar-inner">
             <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
                 <a class="brand" href="{{ path('homepage') }}">
                     <img src="assets/img/{% if logo is defined %}{{ logo }}{% else %}Logodark.png{% endif %}" alt="">
                 </a>
-                <div id="main-nav">
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="{{ path('homepage') }}">Home</a> </li>
-                            <li><a href="{{ path('front.products') }}">Products</a> </li>
-                            <li><a href="{{ path('front.contact') }}">Contact Us</a> </li>
-                            <li><a href="{{ path('front.faq') }}">FAQ</a> </li>
-                        </ul>
-                    </div>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="{% if title == 'Homepage'%}active{% endif %}"><a href="{{ path('homepage') }}">Home</a> </li>
+                        <li class="{% if title == 'Products'%}active{% endif %}"><a href="{{ path('front.products') }}">Products</a> </li>
+                        <li class="{% if title == 'Contact Us'%}active{% endif %}"><a href="{{ path('front.contact') }}">Contact Us</a> </li>
+                        <li class="{% if title == 'FAQ'%}active{% endif %}"><a href="{{ path('front.faq') }}">FAQ</a> </li>
+                    </ul>
                 </div>
             </div>
         </div>
