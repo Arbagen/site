@@ -1,0 +1,9 @@
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.card-img-top{
+    max-width: 20rem;
+}

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{project_name}} |{% block title %}{% endblock %}</title>
     {% block stylesheets %}
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="assets/css/docs.css" rel="stylesheet">
-        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+        <link href="build/css/app.css" rel="stylesheet">
+
+        <link href="assets/css/footer.css" rel="stylesheet">
+        <link href="assets/css/carousel.css" rel="stylesheet">
 
         <link rel="shortcut icon" href="assets/ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
@@ -17,39 +17,21 @@
         <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
     {% endblock %}
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<body>
 {% block navigation %}
     {% include '@site/layouts/front_navbar.html.twig'  %}
 {% endblock %}
-{% block body %}
-    Page content
-{% endblock %}
-{% block footer %}
-    {% include '@site/layouts/front_footer.html.twig'  %}
-{% endblock %}
+<main>
+    {% block body %}
+        Page content
+    {% endblock %}
+    {% block footer %}
+        {% include '@site/layouts/front_footer.html.twig'  %}
+    {% endblock %}
+</main>
 {% block javascript %}
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script src="http://platform.twitter.com/widgets.js"></script>
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/google-code-prettify/prettify.js"></script>
-    <script src="assets/js/bootstrap-transition.js"></script>
-    <script src="assets/js/bootstrap-alert.js"></script>
-    <script src="assets/js/bootstrap-modal.js"></script>
-    <script src="assets/js/bootstrap-dropdown.js"></script>
-    <script src="assets/js/bootstrap-scrollspy.js"></script>
-    <script src="assets/js/bootstrap-tab.js"></script>
-    <script src="assets/js/bootstrap-tooltip.js"></script>
-    <script src="assets/js/bootstrap-popover.js"></script>
-    <script src="assets/js/bootstrap-button.js"></script>
-    <script src="assets/js/bootstrap-collapse.js"></script>
-    <script src="assets/js/bootstrap-carousel.js"></script>
-    <script src="assets/js/bootstrap-typeahead.js"></script>
-    <script src="assets/js/bootstrap-affix.js"></script>
-    <script src="assets/js/application.js"></script>
-    <script src="assets/js/superfish.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="build/js/app.js"></script>
+    <script src="build/js/products.js"></script>
 {% endblock %}
 </body>
 </html>
